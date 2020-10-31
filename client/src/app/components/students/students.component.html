@@ -1,0 +1,104 @@
+<div class="limiter">
+    <div class="container-login">
+        <div class="wrap-login">
+            <div class="login-pic" data-tilt>
+                <img src="public/images/stud.png" alt="IMG">
+            </div>
+            <form class="mt-2" #studentForm="ngForm" (ngSubmit)="createCuenta(studentForm)">
+                <h2 class="text-info mb-5 text-center brand">{{'student.title' | translate}}</h2>
+                <div id="code" class="form-group wrap-input">
+                    <input type="text" name="code" class="form-control input" placeholder="{{'student.cui' | translate}}" [(ngModel)]="code">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                        <i class="fa fa-calculator" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-valid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-invalid shake">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div id="name" class="form-group wrap-input">
+                    <input type="text" name="name" class="form-control input" placeholder="{{'student.name' | translate}}" [(ngModel)]="name">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                        <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-valid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-invalid shake">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="form-group" id="nature" data-toggle="popover">
+                    <select class="custom-select" id="natureSelect">
+                        <option selected="">{{'student.sInst' | translate}}</option>
+                        <option value="Activo"> Activo</option>
+                        <option value="Pasivo"> Pasivo</option>
+                        <option value="Ganancias"> Ganancias</option>
+                        <option value="Perdida"> Perdida</option>
+                    </select>
+                </div><div class="form-group" id="type" data-toggle="popover">
+                    <select class="custom-select" id="typeSelect">
+                        <option selected="">{{'student.lastname' | translate}}</option>
+                        <option value="Corriente"> Corriente</option>
+                        <option value="No Corriente"> No Corriente</option>
+                    </select>
+                </div>
+                <div class="wrap-btn-inline">
+                    <button class="btn btn-info col-md-6" type="submit">{{'student.title' | translate}}</button>
+                    <button class="btn btn-dark col-md-6" type="button" (click)="cleanForm(studentForm)">{{'student.cancel' | translate}}</button>
+                </div>
+            </form>
+        </div>
+        <div class="table-container mt-4">
+            <table class="table-rwd">
+                <thead>
+                    <th style="min-width: 150px" scope="col" class="tb-title table-primary">
+                        {{'student.carnet' | translate}}</th>
+                    <th style="min-width: 150px" scope="col" class="tb-title table-primary">
+                        {{'student.name' | translate}}</th>
+                    <th style="min-width: 150px" scope="col" class="tb-title table-primary">
+                        {{'student.tel' | translate}}</th>
+                    <th style="min-width: 150px" scope="col" class="tb-title table-primary">
+                        {{'student.fnac' | translate}}</th>
+                    <th scope="col" class="tb-title table-primary">{{'student.ops' | translate}}</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cuenta of cuentaService.cuentas">
+                        <td>{{cuenta._id}}</td>
+                        <td>{{cuenta.name}}</td>
+                        <td>{{cuenta.naturaleza}}</td>
+                        <td>{{cuenta.tipo}}</td>
+                        <td ng-if="showTooltip" class="text-center">
+                            <i class="fa fa-pencil-square-o op-icon" style="margin-right: 15px;" aria-hidden="true" data-toggle="tooltip" data-placement="right" data-original-title="Edit" title="Edit Account" (click)="selectCuenta(cuenta, 'E')"></i>
+                            <i class="fa fa-trash-o op-icon" aria-hidden="true" data-toggle="tooltip" data-placement="right" data-original-title="Delete" title="Delete Account" data-toggle="modal" data-target="#deleteConfirmation" (click)="selectCuenta(cuenta, 'D')"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="deleteConfirmation">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-info">{{'delConf' | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-info"><i class="fa fa-times" aria-hidden="true"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{'delConfBody' | translate}} "{{accountSelected._id}}"?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal" (click)="deleteCuenta()">{{'delConfOp1' | translate}}</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="flushSelectedCuenta()">{{'delConfOp2' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

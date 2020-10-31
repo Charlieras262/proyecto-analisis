@@ -1,0 +1,66 @@
+<div class="limiter">
+    <div class="container-login">
+        <div class="wrap-login">
+            <div class="login-pic" data-tilt>
+                <img src="public/images/user.png" alt="IMG">
+            </div>
+            <form class="mt-2" #studentForm="ngForm" (ngSubmit)="onRegisterUser()">
+                <h2 class="text-info mb-5 text-center brand">{{'register.title' | translate}}</h2>
+                <div id="username" class="form-group wrap-input" data-toggle="popover">
+                    <input type="text" name="username" class="form-control input" placeholder="{{'register.username' | translate}}" [(ngModel)]="username">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-valid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-invalid shake">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div id="email" class="form-group wrap-input">
+                    <input type="email" name="email" class="form-control input" aria-describedby="emailHelp" placeholder="{{'register.email' | translate}}" [(ngModel)]="email">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-valid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-invalid shake">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div id="password" class="form-group wrap-input">
+                    <input name="passoword" type="password" class="form-control input" placeholder="{{'register.password' | translate}}" [(ngModel)]="password">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                    <i class="fa fa-lock"></i>
+                    </span>
+                    <span class="input-valid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-invalid shake">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div id="valPass" class="form-group wrap-input">
+                    <input name="valPass" type="password" class="form-control input" placeholder="{{'register.valPass' | translate}}" [(ngModel)]="valPass">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                    <i class="fa fa-lock"></i>
+                    </span>
+                    <span class="input-valid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-invalid shake">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <button class="btn btn-info col-md-12" type="submit">{{'register.btn1' | translate}}</button>
+                <button class="btn btn-dark col-md-12 mt-2" type="button" [routerLink]="['/login']" routerLinkActive="router-link-active">{{'register.btn2' | translate}}</button>
+            </form>
+        </div>
+    </div>
+</div>

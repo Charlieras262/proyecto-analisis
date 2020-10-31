@@ -1,0 +1,84 @@
+<div class="limiter">
+    <div class="container-login">
+        <div class="wrap-login">
+            <div class="login-pic" data-tilt>
+                <img src="public/images/asig.png" alt="IMG">
+            </div>
+            <form class="mt-2" #assignForm="ngForm" (ngSubmit)="createAssign(assignForm)">
+                <h2 class="text-info mb-5 text-center brand">{{'assign.title' | translate}}</h2>
+                <div class="form-group" id="account" data-toggle="popover">
+                    <select class="custom-select" id="accountSelect">
+                        <option selected="">{{'assign.sStud' | translate}}</option>
+                        <option value="{{student._id}}" *ngFor="let student of cuentasService.cuentas">{{student._id}} -
+                            {{student.name}}
+                        </option>
+                    </select>
+                </div>
+                <div id="value" class="form-group wrap-input">
+                    <input type="text" name="value" class="form-control input"
+                        placeholder="{{'assign.section' | translate}}" [(ngModel)]="value">
+                    <span class="focus-input"></span>
+                    <span class="symbol-input">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-valid">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                    </span>
+                    <span class="input-invalid shake">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+                <div class="wrap-btn-inline">
+                    <button class="btn btn-info col-md-6" type="submit">{{'assign.title' | translate}}</button>
+                    <button class="btn btn-dark col-md-6" type="button"
+                        (click)="cleanForm(assignForm)">{{'assign.cancel' | translate}}</button>
+                </div>
+            </form>
+            <div class="table-container mt-4">
+                <table class="table-rwd">
+                    <thead>
+                        <th scope="col" class="tb-title table-primary">{{'assign.code' | translate}}</th>
+                        <th scope="col" class="tb-title table-primary">{{'assign.section' | translate}}</th>
+                        <th style="width: 100px" scope="col" class="tb-title table-primary">{{'assign.ops' | translate}}
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let assign of assignService.assigns">
+                            <td>{{assign.account_code}}</td>
+                            <td>{{assign.value}}</td>
+                            <td ng-if="showTooltip" class="text-center">
+                                <i class="fa fa-trash-o op-icon" aria-hidden="true" data-toggle="tooltip"
+                                    data-placement="right" data-original-title="Delete" title="Delete assign"
+                                    data-toggle="modal" data-target="#deleteConfirmation"
+                                    (click)="selectAssign(assign, 'D')"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="deleteConfirmation">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-info">{{'delConf' | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-info"><i class="fa fa-times" aria-hidden="true"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{'delConfInst' | translate}} "{{assignSelected.account_code}} <i class="fa fa-arrow-right"></i>
+                    {{assignSelected.value}}"?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal"
+                    (click)="deleteAssign()">{{'delConfOp1' | translate}}</button>
+                <button type="button" class="btn btn-dark" data-dismiss="modal"
+                    (click)="flushSelectedAssign()">{{'delConfOp2' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
