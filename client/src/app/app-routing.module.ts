@@ -10,6 +10,7 @@ import { AssignmentsComponent } from './components/assignments/assignments.compo
 import { StudentsComponent } from './components/students/students.component';
 import { DashboardSuComponent } from './components/dashboard-su/dashboard-su.component';
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
+import { CoursesComponent } from './components/courses/courses.component';
 
 const routes: Routes = [
   //GENERAL
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'dashboard/0010', component: DashboardAdminComponent, canActivate: [UserAdminGuard]},
   {path: 'dashboard/0010/asignar', component: AssignmentsComponent, canActivate: [UserAdminGuard]},
   {path: 'dashboard/0010/cuentas', component: StudentsComponent, canActivate: [UserAdminGuard]},
+  {path: 'dashboard/0010/calculos', component: CoursesComponent, canActivate: [UserAdminGuard]},
   //NOTFOUND
   {path: '**', redirectTo: 'not-found'},
   {path: 'not-found', component: NotFoundComponent}

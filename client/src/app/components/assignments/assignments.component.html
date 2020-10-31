@@ -44,7 +44,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let assign of assignService.assigns">
-                            <td>{{assign.account_code}}</td>
+                            <td>{{assign.account_code._id}}</td>
                             <td>{{assign.value}}</td>
                             <td ng-if="showTooltip" class="text-center">
                                 <i class="fa fa-trash-o op-icon" aria-hidden="true" data-toggle="tooltip"

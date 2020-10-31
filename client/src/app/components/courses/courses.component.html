@@ -1,0 +1,82 @@
+<div class="limiter">
+  <div class="container-login">
+    <form class="wrap-login" #coursesForm="ngForm" (ngSubmit)="createAssign(coursesForm)">
+      <div class="login-pic" data-tilt>
+        <img src="public/images/stats.png" alt="IMG">
+      </div>
+      <div class="mt-2 col-md-7">
+        <h2 class="text-info mb-5 text-center brand">{{'courses.unity' | translate}}</h2>
+      </div>
+      <!--Contenido del Curso-->
+      <div class="mt-3" id="pensum">
+        <!--Unity Begins-->
+        <div class="" id="unities">
+          <div class="" id="unity1" *ngVar="unities[0].number as number">
+            <!--Content Begins-->
+            <p class="text-white text-left brand">{{'courses.uni' | translate}} {{number}}</p>
+            <div class="ml-5" id="contents">
+              <div class="row col-md-12">
+                <p class="text-info text-left brand col-md-6">{{'courses.content1' | translate}}</p>
+                <p class="text-info text-left brand col-md-6">{{'courses.content2' | translate}}</p>
+              </div>
+              <div class="mt-3" id="content1" name="content">
+                <div class="wrap-input-inline">
+                  <div class="wrap-input" data-toggle="popover">
+                    <select class="custom-select" id="accountDebitSelect1"
+                      (change)="unities[0].subjects[0].name=$event.target.value">
+                      <option selected="">{{'assign.sStud' | translate}}</option>
+                      <option value="{{assign.value}}" *ngFor="let assign of assignService.assigns">
+                        {{assign.account_code.name}} - {{assign.value}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="wrap-input" data-toggle="popover">
+                    <select class="custom-select" id="accountCreditSelect1"
+                      (change)="unities[0].subjects[0].contentHelp=$event.target.value">
+                      <option selected="">{{'assign.sStud' | translate}}</option>
+                      <option value="{{assign.value}}" *ngFor="let assign of assignService.assigns">
+                        {{assign.account_code.name}} - {{assign.value}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn-add mb-2 ml-5" type="button" (click)="addContent(number)">
+              <i class="fa fa-plus"></i>
+              <span>{{'courses.addCont' | translate}}</span></button>
+            <button class="btn-add mb-2 ml-2" type="button" (click)="calcularTGrafica(number)">
+              <i class="fa fa-calculator"></i>
+              <span>{{'courses.title' | translate}}</span>
+            </button>
+            <!--Content Ends-->
+          </div>
+        </div>
+        <button class="btn-add mb-4" type="button" (click)="addUnity()"><i
+            class="fa fa-plus "></i><span>{{'courses.addUnity' | translate}}</span></button>
+        <!--Unity Ends-->
+      </div>
+    </form>
+  </div>
+</div>
+
+<template id="unityTemplate">
+  <div class="" id="unity{{n}}" *ngVar="n as number">
+    <p class="text-white text-left brand">{{'courses.uni' | translate}} {{number}}</p>
+    <div class="ml-5" id="contents mt-4">
+      <div class="row col-md-12">
+        <p class="text-info text-left brand col-md-6">{{'courses.content1' | translate}}</p>
+        <p class="text-info text-left brand col-md-6">{{'courses.content2' | translate}}</p>
+      </div>
+
+    </div>
+    <input hidden id="n{{number}}" type="text" value="{{number}}">
+    <button id="btn{{number}}" class="btn-add mb-2 ml-5" type="button"><i
+        class="fa fa-plus "></i><span>{{'courses.addCont' | translate}}</span>
+    </button>
+    <button id="cal{{number}}" class="btn btn-info mb-2 ml-2" type="button" (click)="addContent(number)">
+      <i class="fa fa-calculator"></i>
+              <span>{{'courses.title' | translate}}</span>
+    </button>
+  </div>
+</template>

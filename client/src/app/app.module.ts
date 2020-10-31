@@ -18,6 +18,7 @@ import { AdminsComponent } from './components/admins/admins.component';
 import { VarDirective } from './directives/var.directive';
 import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { DashboardSuComponent } from './components/dashboard-su/dashboard-su.component';
+import { CoursesComponent } from './components/courses/courses.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DashboardSuComponent } from './components/dashboard-su/dashboard-su.com
     AdminsComponent,
     DashboardAdminComponent,
     DashboardSuComponent,
+    CoursesComponent,
     VarDirective
   ],
   imports: [
