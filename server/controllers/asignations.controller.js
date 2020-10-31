@@ -1,6 +1,4 @@
 const Asignation = require('../models/Asignation');
-const Cuenta = require('../models/Cuenta');
-const Course = require('../models/Course');
 const asignationCTRL = {};
 
 asignationCTRL.getAsignations = async (req, res) => {

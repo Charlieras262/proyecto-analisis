@@ -1,8 +1,6 @@
 const validation = {};
 const config = require('../../config/database');
 const CryptoJS = require('crypto-js');
-const Teacher = require('../../models/Teacher');
-const Course = require('../../models/Course');
 
 /**
  * Este metodo valida si un campo esta lleno o no,
@@ -26,22 +24,6 @@ validation.isFilled = (data, nameFiel) => {
 validation.decrypt = (str) => {
     var bytes = CryptoJS.AES.decrypt(str, config.secret);
     return bytes.toString(CryptoJS.enc.Utf8);
-}
-
-validation.generateCourseCode = async (type) => {
-    let code = Math.round(Math.random() * (9999 - 1000) + 1000);
-    while (await Course.findOne({cod_course: code}).countDocuments() > 0) {
-        code = Math.round(Math.random() * (9999 - 1000) + 1000);
-    }
-    return code.toString();
-}
-
-validation.generateTeacherCode = async (type) => {
-    let code = Math.round(Math.random() * (9999 - 1000) + 1000);
-    while (await Teacher.findById(code).countDocuments() > 0) {
-        code = Math.round(Math.random() * (9999 - 1000) + 1000);
-    }
-    return code.toString();
 }
 
 validation.isFilled = (data, nameFiel) => {

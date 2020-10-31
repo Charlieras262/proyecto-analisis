@@ -28,16 +28,8 @@ require('./controllers/validations/passport')(passport);
 
 //Routes
 app.use('/api/users', require('./routes/user.routes'));
-app.use('/api/courses', require('./routes/course.routes'));
-app.use('/api/pensums', require('./routes/pensum.routes'));
-app.use('/api/unities', require('./routes/unity.routes'));
-app.use('/api/subjects', require('./routes/subject.routes'));
-app.use('/api/teachers', require('./routes/teacher.routes'));
-app.use('/api/scores', require('./routes/score.routes'));
-app.use('/api/institutions', require('./routes/institution.routes'));
 app.use('/api/assignments', require('./routes/asignations.routes'));
 app.use('/api/cuentas', require('./routes/students.routes'));
-app.use('/api/histories', require('./routes/history.routes'));
 
 // Set Static Folder
 
